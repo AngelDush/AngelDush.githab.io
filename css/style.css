@@ -1,10 +1,78 @@
 body{
     font-family: Arial, sans-serif;
 }
+
+.preloader {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #e0e0e0;
+  z-index: 1001;
+}
+
+.preloader__row {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  width: 70px;
+  height: 70px;
+  margin-top: -35px;
+  margin-left: -35px;
+  text-align: center;
+  animation: preloader-rotate 2s infinite linear;
+}
+
+.preloader__item {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  background-color: #fc6a3e;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  animation: preloader-bounce 3s infinite ease-in-out;
+}
+
+.preloader__item:last-child {
+  top: auto;
+  bottom: 0;
+  animation-delay: -1s;
+}
+
+@keyframes preloader-rotate {
+  100% {
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes preloader-bounce {
+
+  0%,
+  100% {
+    transform: scale(0);
+  }
+
+  50% {
+    transform: scale(1);
+  }
+}
+
+.loaded_hiding .preloader {
+  transition: 0.3s opacity;
+  opacity: 0;
+}
+
+.loaded .preloader {
+  display: none;
+}
+
 nav{
     width: 100%;
     height: 60px;
     background: #344051;
+    position: fixed;
 }
 
 .logo{
@@ -13,6 +81,14 @@ nav{
     line-height: 60px;
     padding-left: 388px;
     float: left;
+    -webkit-animation: comming 2s ease;
+    -o-animation: comming 2s ease;
+    animation: comming 2s ease;
+}
+
+main{
+    width: 100%;
+    height: 100%;
 }
 
 .menu{
@@ -27,10 +103,14 @@ nav{
     margin-right: 40px;
     font-size: 16px;
     text-transform: uppercase;
+    -webkit-animation: topshift 0.4s ease forwards;
+    -o-animation: topshift 0.4s ease forwards;
+    animation: topshift 0.4s ease forwards;
+    opacity: 0;
 }
 .main{
     width: 100%;
-    height: calc(100% - 60px);
+    height: 100%;
     background: url(../img/boy.png) 90% 100%/auto 85% no-repeat, url(../img/bg.jpg) center/cover no-repeat;
     
 }
@@ -40,6 +120,13 @@ nav{
     margin: 432px 0px 0px 404px;
     color: #2c384a;
     text-align: center;
+    opacity: 0;
+    -webkit-animation: titlemove 1s ease forwards;
+    -o-animation: titlemove 1s ease forwards;
+    animation: titlemove 1s ease forwards;
+    -webkit-animation-delay: 2.4s;
+    -o-animation-delay: 2.4s;
+    animation-delay: 2.4s;
 }
 
 .title__container h1{
@@ -66,10 +153,99 @@ nav{
     margin: 50px 14px 0px 14px;
     }
 
+.title__container input{
+    transition: all 0.2s;
+    transform:scale(1);
+}
+
+.title__container input:hover{
+    background: #344051;
+    color: white;
+}
+
+.title__container input:active{
+    transform:scale(1.1);
+}
+
+@keyframes comming{
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+
+@keyframes topshift{
+    from{
+        opacity: 0;
+        margin-top: -80px;
+    }
+    to{
+        opacity: 1;
+        margin-top: 0px;
+    }
+}
+
+@keyframes titlemove{
+    from{
+        opacity: 0;
+        margin-left: -500px;
+    }
+    to{
+        opacity: 1;
+        margin-left: 404px;
+    }
+}
+
+.menu li a{
+    transition: all 0.1s;
+    color: white;
+    transform: scale(1);
+    display: inline-block;
+}
+
+.menu li a:visited{
+    color: white;
+}
+
+.menu li a:hover{
+    color: #d17700;
+}
+
+.menu li a:active{
+    transform: scale(1.1);
+}
+
+.menu li:nth-child(2){
+    animation-delay: 0.4s;
+}
+
+.menu li:nth-child(3){
+    animation-delay: 0.8s;
+}
+
+.menu li:nth-child(4){
+    animation-delay: 1.2s;
+}
+
+.menu li:nth-child(5){
+    animation-delay: 1.6s;
+}
+
+.menu li:nth-child(6){
+    animation-delay: 2s;
+}
+
 .info{
     width: 100%;
     height: 717px;
-    background: url(../img/boy_info.png) 860px 117px /auto 203px no-repeat, url(../img/line_info.png) 925px 50px /70px 4px no-repeat, url(../img/bg_info.jpg) center/cover no-repeat;
+    background: url(../img/boy_info.png) 860px 223px /auto 203px no-repeat, url(../img/line_info.png) 925px 50px /70px 4px no-repeat, url(../img/bg_info.jpg) center/cover no-repeat;
+}
+
+.info h2:hover{
+    color: #000;
+    text-shadow: 1px 10px 10px #000;
 }
 
 .personal_content h2{
@@ -82,8 +258,9 @@ nav{
     font-weight: bold;
     color: #263244;
 }
+
 .info_0>p{
-    margin: 300px 450px 0px 595px;
+    margin: 430px 450px 0px 595px;
 }
 .info_01>p{
     margin: 42px 450px 0px 595px;
@@ -98,11 +275,25 @@ nav{
     background-position: 8% 40%;
     margin: 586px 0px 0px 885px;
     border-radius: 6px;
-    margin-top: 40px;
+    margin-top: 58px;
     color: #6d7682;
     font-size: 12px;
     padding: 8px 10px 10px 33px;
     }
+
+.personal_content input{
+    transition: all 0.2s;
+    transform:scale(1);
+}
+
+.personal_content input:hover{
+    background: #344051;
+    color: white;
+}
+
+.personal_content input:active{
+    transform:scale(1.1);
+}
 
 .main_1{
     width: 100%;
@@ -111,12 +302,22 @@ nav{
     url(../img/ruport.png) 1495px 61% /auto 36px no-repeat, url(../img/bg_main_1.jpg) center/cover no-repeat;
 }
 
-.skills_01 h2{
+.skills_01{
     padding: 107px 0px 0px 874px;
+    
+ }
+
+.skills_01 h2{
     color: #263244;
     font-weight: bold;
     font-size: 27px;
+    
  }
+
+.skills_01 h2:hover{
+    color: #000;
+    text-shadow: 1px 10px 10px #000;
+}
 
 .text{
     color: #cf7600;
@@ -148,6 +349,11 @@ nav{
     font-size: 27px;
 }
 
+.case h2:hover{
+    color: #000;
+    text-shadow: 1px 10px 10px #000;
+}
+
 .case h4{
     padding: 70px 0px 0px 617px;
     color: #263244;
@@ -169,11 +375,18 @@ nav{
     line-height: 25px;
     }
 
-.block_1 h5{
+.block_1 p{
     color: #384354;
     font-size: 15px;
     line-height: 20px;
     }
+
+.block_1 a{
+    color: #384354;
+    font-size: 15px;
+    line-height: 20px;
+    }
+
 .block_1 input{
     text-align: center;
     border: 1px solid #63b5ae;
@@ -184,6 +397,20 @@ nav{
     font-weight: bold;
     font-size: 15px;
     padding: 15px 44px 15px 44px;
+}
+
+.block_1 input{
+    transition: all 0.2s;
+    transform:scale(1);
+}
+
+.block_1 input:hover{
+    background: #db8755;
+    color: black;
+}
+
+.block_1 input:active{
+    transform:scale(1.1);
 }
 
 .block_2{
@@ -210,6 +437,11 @@ nav{
     font-size: 33px;
     font-weight: bold;
     margin: 0px 0px 0px 805px;
+}
+
+.coast_01 span:hover{
+    color: #000;
+    text-shadow: 1px 10px 10px #000;
 }
 
 .coast_02 h2{
@@ -277,7 +509,7 @@ select {
     width: 100%;
     height: 521px;
     background: url(../img/line_info.png) 925px 30% /70px 4px no-repeat, url(../img/smile_stat.png) 486px 61% /auto 45px no-repeat, url(../img/staples_stat.png) 790px 61% /auto 45px no-repeat, url(../img/check_stat.png) 1105px 61% /auto 45px no-repeat,
-    url(../img/cup_stat.png) 1427px 61% /auto 45px no-repeat, url(../img/bg_statistic.png) center/cover no-repeat;
+    url(../img/cup_stat.png) 1427px 61% /auto 45px no-repeat, url(../img/bg_statistic.png) center/cover fixed no-repeat;
 }
 
 .skills_11 h2{
@@ -286,6 +518,11 @@ select {
     font-weight: bold;
     font-size: 27px;
  }
+
+.skills_11 h2:hover{
+    color: #000;
+    text-shadow: 1px 10px 10px #000; 
+}
 
 .text_01{
     color: #323e4f;
@@ -320,14 +557,19 @@ select {
 
 .reviews h2{
     margin: 105px 0px 0px 896px;
-    
 }
 
 .reviews h2{
     font-size: 27px;
     font-weight: bold;
     color: #3d4654;
-    }
+}
+
+.reviews h2:hover{
+    color: #000;
+    text-shadow: 1px 10px 10px #000;
+}
+
 
 .info_001>p{
     margin: 232px 450px 0px 595px;
@@ -363,7 +605,12 @@ select {
     font-weight: bold;
     font-size: 27px;
 }
- 
+
+.footer h2:hover{
+    color: white;
+    text-shadow: 2px 5px 5px white;
+}
+
 .info_foot_01 h4{
     padding: 68px 0px 0px 671px;
 }
@@ -422,6 +669,20 @@ textarea {
     font-size: 15px;
     padding: 12px 15px 12px 17px;
     margin: 28px 0px 0px 910px;
+}
+
+.info_input input{
+    transition: all 0.2s;
+    transform:scale(1);
+}
+
+.info_input input:hover{
+    background: none;
+    color: white;
+}
+
+.info_input input:active{
+    transform:scale(1.1);
 }
 
 .map{
